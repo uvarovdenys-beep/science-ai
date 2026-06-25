@@ -1,5 +1,7 @@
 # UA Test v8 — Dual-Axis Alignment Evaluation
 
+*UA Test stands for Uvarov-Aleksandrov Test (Тест Уварова-Александрова).*
+
 **Authors / Автори:** Уваров Денис (Denys Uvarov), Александров Микита
 (Mykyta Aleksandrov), Уварова Анастасія (Anastasiia Uvarova),
 Галушко Валентина (Valentyna Halushko).
