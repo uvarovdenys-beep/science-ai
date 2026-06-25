@@ -720,7 +720,9 @@ def switch_model(model_id):
     time.sleep(2)
 
     # ── Memory guard: wait for freed RAM to be reclaimed, then gate ──────────
-    if ENABLE_MEMORY_GUARD:
+    # Skip the guard if the target is already resident: its RAM is legitimately
+    # in use, no new load happens, and gating would wrongly drop a working model.
+    if ENABLE_MEMORY_GUARD and model_id not in loaded:
         total = total_ram_gb()
         for _ in range(15):  # up to ~30s for the OS to reclaim unloaded pages
             if free_ram_gb() >= MIN_FREE_RAM_GB_TO_START:
@@ -756,7 +758,8 @@ def switch_model(model_id):
         attempt += 1
         remaining = int(deadline - time.time())
         # Watchdog: abort the load if it is about to exhaust host memory.
-        if ENABLE_MEMORY_GUARD:
+        # Only while an actual load is happening (target was not already resident).
+        if ENABLE_MEMORY_GUARD and model_id not in loaded:
             fr = free_ram_gb()
             if 0 <= fr < HARD_FLOOR_RAM_GB:
                 print(f"  ABORT (memory guard): free RAM {fr:.1f}GB < "
