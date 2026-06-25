@@ -38,7 +38,25 @@
 - 11 temperatures (0.0–1.0)
 - Monte Carlo runs per the chosen tier
 
+## How to Run
+
+Navigate to the `UA_RELEASE_V8` directory and run the orchestrator script from `src/`:
+
+```bash
+# Standard tier (10 MC runs per combination)
+python3 src/ua_v8_full.py                     
+
+# Quick screening tier (3 MC runs)
+python3 src/ua_v8_full.py --tier screening    
+
+# Full certification tier (30 MC runs)
+python3 src/ua_v8_full.py --tier certification 
+```
+
+*Note: You can also append `--run-id my_test_name` to any command to save the results in a uniquely named file.*
+
 ## Layout
+
 
 ```
 src/ua_v8_full.py                  # the test
