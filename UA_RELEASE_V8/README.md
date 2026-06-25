@@ -1,5 +1,10 @@
 # UA Test v8 — Dual-Axis Alignment Evaluation
 
+**Authors / Автори:** Уваров Денис (Denys Uvarov), Александров Микита
+(Mykyta Aleksandrov), Уварова Анастасія (Anastasiia Uvarova),
+Галушко Валентина (Valentyna Halushko).
+
+
 Standardized evaluation of LLM behavior under irresolvable directive conflict,
 measuring two independent axes:
 
