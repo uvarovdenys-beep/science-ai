@@ -57,6 +57,17 @@ MAX_TOKENS = 4096
 MODEL_WAIT_SEC = 240
 REQUEST_TIMEOUT = 900
 
+# ─── MEMORY GUARD (prevents the host from being OOM-frozen) ─────────────────
+# On unified-memory Macs, loading a model larger than free RAM triggers swap
+# thrash that can lock up the whole system. These limits make the test refuse
+# or abort a load instead of killing the host.
+LMSTUDIO_MODELS_ROOT = Path.home() / ".lmstudio" / "models"
+OS_RESERVE_GB = 8.0          # RAM always left for macOS + apps
+MIN_FREE_RAM_GB_TO_START = 6.0  # don't even begin a load below this
+HARD_FLOOR_RAM_GB = 2.5      # if free RAM crosses this during load -> abort
+MODEL_SIZE_SAFETY = 1.25     # weights-on-disk -> resident RAM multiplier
+ENABLE_MEMORY_GUARD = True
+
 TIERS = {
     "screening":     {"mc_runs": 3,  "label": "Screening"},
     "standard":      {"mc_runs": 10, "label": "Standard"},
@@ -617,6 +628,66 @@ def _http_post(url, payload, timeout=REQUEST_TIMEOUT):
         return json.loads(r.read().decode())
 
 
+# ─── MEMORY HELPERS ────────────────────────────────────────────────────────
+def total_ram_gb():
+    try:
+        import subprocess
+        out = subprocess.check_output(["sysctl", "-n", "hw.memsize"])
+        return int(out) / 1024 ** 3
+    except Exception:
+        try:
+            import psutil
+            return psutil.virtual_memory().total / 1024 ** 3
+        except Exception:
+            return 0.0
+
+
+def free_ram_gb():
+    """Best-effort available (not just free) RAM in GB."""
+    try:
+        import psutil
+        return psutil.virtual_memory().available / 1024 ** 3
+    except Exception:
+        pass
+    # Fallback: parse vm_stat (macOS)
+    try:
+        import subprocess
+        out = subprocess.check_output(["vm_stat"]).decode()
+        page = 4096
+        for line in out.splitlines():
+            if "page size of" in line:
+                page = int(re.search(r"(\d+)", line).group(1))
+        free = inactive = 0
+        for line in out.splitlines():
+            if line.startswith("Pages free:"):
+                free = int(re.search(r"(\d+)", line).group(1))
+            elif line.startswith("Pages inactive:"):
+                inactive = int(re.search(r"(\d+)", line).group(1))
+        return (free + inactive) * page / 1024 ** 3
+    except Exception:
+        return -1.0  # unknown
+
+
+def model_disk_size_gb(model_id):
+    """Best-effort on-disk size of a model's weights, matched by id fragments.
+
+    Returns 0.0 if the directory cannot be located (guard then falls back to
+    the live free-RAM watchdog only).
+    """
+    if not LMSTUDIO_MODELS_ROOT.is_dir():
+        return 0.0
+    frag = model_id.split("/")[-1].lower().replace("-", "").replace("_", "").replace(".", "")
+    best = 0.0
+    for d in LMSTUDIO_MODELS_ROOT.rglob("*"):
+        if not d.is_dir():
+            continue
+        name = d.name.lower().replace("-", "").replace("_", "").replace(".", "")
+        if frag and frag in name:
+            size = sum(f.stat().st_size for f in d.rglob("*") if f.is_file())
+            best = max(best, size / 1024 ** 3)
+    return best
+
+
 # ─── MODEL MANAGEMENT ──────────────────────────────────────────────────────
 def get_all_models():
     data = _http_get(MODELS_ENDPOINT)
@@ -648,6 +719,28 @@ def switch_model(model_id):
                 print(f"  Unload error for {mid}: {e}")
     time.sleep(2)
 
+    # ── Memory guard: wait for freed RAM to be reclaimed, then gate ──────────
+    if ENABLE_MEMORY_GUARD:
+        total = total_ram_gb()
+        for _ in range(15):  # up to ~30s for the OS to reclaim unloaded pages
+            if free_ram_gb() >= MIN_FREE_RAM_GB_TO_START:
+                break
+            time.sleep(2)
+        free = free_ram_gb()
+        disk = model_disk_size_gb(model_id)
+        need = disk * MODEL_SIZE_SAFETY
+        print(f"  [mem] total={total:.1f}GB free={free:.1f}GB "
+              f"model_on_disk={disk:.1f}GB need~{need:.1f}GB resident")
+        # Refuse a model that cannot fit, before touching the loader at all.
+        if need > 0 and need > (total - OS_RESERVE_GB):
+            print(f"  SKIP (memory guard): needs ~{need:.1f}GB but only "
+                  f"{total - OS_RESERVE_GB:.1f}GB usable on a {total:.0f}GB host")
+            return False
+        if free >= 0 and free < MIN_FREE_RAM_GB_TO_START:
+            print(f"  SKIP (memory guard): only {free:.1f}GB free "
+                  f"(need >= {MIN_FREE_RAM_GB_TO_START:.1f}GB to start safely)")
+            return False
+
     try:
         _http_post(LOAD_ENDPOINT, {"identifier": model_id}, timeout=60)
         print(f"  Load request sent for {model_id}")
@@ -662,6 +755,17 @@ def switch_model(model_id):
     while time.time() < deadline:
         attempt += 1
         remaining = int(deadline - time.time())
+        # Watchdog: abort the load if it is about to exhaust host memory.
+        if ENABLE_MEMORY_GUARD:
+            fr = free_ram_gb()
+            if 0 <= fr < HARD_FLOOR_RAM_GB:
+                print(f"  ABORT (memory guard): free RAM {fr:.1f}GB < "
+                      f"{HARD_FLOOR_RAM_GB}GB floor during load — unloading to protect host")
+                try:
+                    _http_post(UNLOAD_ENDPOINT, {"identifier": model_id}, timeout=60)
+                except Exception:
+                    pass
+                return False
         try:
             req = urllib.request.Request(
                 CHAT_ENDPOINT,
