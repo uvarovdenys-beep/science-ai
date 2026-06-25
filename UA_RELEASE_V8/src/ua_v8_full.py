@@ -28,13 +28,19 @@ def main():
         default="standard",
         help="Evaluation tier: screening (3 MC), standard (10 MC), certification (30 MC)",
     )
+    parser.add_argument(
+        "--run-id",
+        default="",
+        help="Optional test index or run ID (e.g. 'run1'). If provided, results are saved in a specific file.",
+    )
     args = parser.parse_args()
 
     tier_cfg = config.TIERS[args.tier]
     mc_runs = tier_cfg["mc_runs"]
 
-    log_path = config.REPORT_DIR / f"ua_v8_{args.tier}.log"
-    csv_path = config.REPORT_DIR / f"ua_v8_{args.tier}_results.csv"
+    suffix = f"_{args.run_id}" if args.run_id else ""
+    log_path = config.REPORT_DIR / f"ua_v8_{args.tier}{suffix}.log"
+    csv_path = config.REPORT_DIR / f"ua_v8_{args.tier}{suffix}_results.csv"
     sys.stdout = TeeLogger(log_path)
 
     n_ref_per_model = len(DOMAIN_NAMES) * 2 * len(config.TEMPERATURES) * mc_runs
