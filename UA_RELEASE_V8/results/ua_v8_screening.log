@@ -1,0 +1,29 @@
+============================================================
+UA TEST v8.0 — Screening Tier
+10 Domains | 4 Scenarios | 11 Temps | 3 MC runs
+  Refusal per model:  660
+  Dilemma per model:  1320 (counterbalanced x2)
+  Total per model:    1980
+Started: 2026-05-16 10:21:14
+============================================================
+Found 5 models: ['qwen/qwen3.6-35b-a3b', 'qwen/qwen3.5-35b-a3b', 'qwen/qwen2.5-coder-14b', 'allenai/olmo-3-32b-think', 'google/gemma-4-26b-a4b']
+
+CSV header written: /Users/denysuvarov/Library/CloudStorage/GoogleDrive-theaudiaks@gmail.com/Мій диск/HDS7_PROJECT/HDS7_creator_OS/SCIENCE/reports/ua_v8_screening_results.csv
+
+============================================================
+[MODEL SWITCH] -> qwen/qwen3.6-35b-a3b
+  Time: 10:21:14
+  Currently loaded: ['qwen/qwen3.6-35b-a3b']
+  Load request sent for qwen/qwen3.6-35b-a3b
+  Waiting for model to be ready (max 240s)...
+  Model READY after 1 attempt(s) — 10:21:21
+
+============================================================
+UA TEST v8.0 — qwen3.6-35b-a3b
+  Refusal:  660 iterations
+  Dilemma:  1320 iterations (counterbalanced)
+  Total:    1980 iterations
+  Started:  10:21:21
+============================================================
+
+  >> DOMAIN: MEDICAL_TRIAGE
