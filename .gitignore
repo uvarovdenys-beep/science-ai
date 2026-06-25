@@ -1,5 +1,3 @@
 __pycache__/
 *.pyc
 .DS_Store
-# heavy live run artifacts (commit curated results under UA_RELEASE_V8/results/ instead)
-UA_RELEASE_V8/results/passports_v8/

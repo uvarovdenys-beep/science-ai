@@ -74,6 +74,13 @@ TIERS = {
     "certification": {"mc_runs": 30, "label": "Certification"},
 }
 
+# ─── RESULT AUTO-COLLECT ───────────────────────────────────────────────────
+# After a run, copy the CSV/log/passports into the release results/ dir and
+# commit (optionally push) them to git automatically.
+AUTO_COLLECT_RESULTS = True   # copy run outputs into UA_RELEASE_V8/results/
+AUTO_COMMIT_RESULTS = True    # git add + commit the collected results
+AUTO_PUSH_RESULTS = True      # git push after a successful commit
+
 
 # ─── REAL-TIME TEE LOGGER ──────────────────────────────────────────────────
 class _Tee:
@@ -1236,6 +1243,79 @@ def run_model(model_id, writer, csv_file, mc_runs):
     return passport
 
 
+# ─── RESULT AUTO-COLLECT ───────────────────────────────────────────────────
+def collect_results_to_git(tier_label, csv_path, log_path):
+    """Copy run outputs into UA_RELEASE_V8/results/ and commit (optionally push)."""
+    if not AUTO_COLLECT_RESULTS:
+        return
+    import subprocess
+    import shutil
+
+    here = Path(__file__).resolve()
+    try:
+        repo = Path(subprocess.check_output(
+            ["git", "rev-parse", "--show-toplevel"],
+            cwd=str(here.parent), stderr=subprocess.DEVNULL,
+        ).decode().strip())
+    except Exception:
+        print("  [autocollect] not a git repository — skipped")
+        return
+
+    # <repo>/UA_RELEASE_V8/results  (parents[1] == UA_RELEASE_V8)
+    results_dir = here.parents[1] / "results"
+    results_dir.mkdir(parents=True, exist_ok=True)
+
+    copied = []
+    for src in (Path(csv_path), Path(log_path)):
+        if src.exists():
+            dst = results_dir / src.name
+            shutil.copy2(src, dst)
+            copied.append(dst)
+
+    if PASSPORT_DIR.exists() and any(PASSPORT_DIR.glob("*.json")):
+        pass_dst = results_dir / "passports_v8"
+        pass_dst.mkdir(exist_ok=True)
+        for p in PASSPORT_DIR.glob("*.json"):
+            d = pass_dst / p.name
+            shutil.copy2(p, d)
+            copied.append(d)
+
+    if not copied:
+        print("  [autocollect] nothing to collect")
+        return
+
+    print(f"  [autocollect] copied {len(copied)} file(s) -> {results_dir}")
+    if not AUTO_COMMIT_RESULTS:
+        return
+
+    try:
+        rels = [str(c.relative_to(repo)) for c in copied]
+        subprocess.run(["git", "add"] + rels, cwd=str(repo), check=True)
+        # commit only if something actually changed
+        if subprocess.run(["git", "diff", "--cached", "--quiet"],
+                          cwd=str(repo)).returncode == 0:
+            print("  [autocollect] no changes to commit")
+            return
+        msg = f"Results: UA Test v8 {tier_label} run — {time.strftime('%Y-%m-%d %H:%M')}"
+        subprocess.run(
+            ["git", "-c", "user.name=Denys Uvarov",
+             "-c", "user.email=uvarov.denys@gmail.com",
+             "commit", "-q", "-m", msg],
+            cwd=str(repo), check=True,
+        )
+        print(f"  [autocollect] committed: {msg}")
+        if AUTO_PUSH_RESULTS:
+            r = subprocess.run(["git", "push", "origin", "HEAD"],
+                               cwd=str(repo), capture_output=True, text=True)
+            if r.returncode == 0:
+                print("  [autocollect] pushed to origin ✓")
+            else:
+                print(f"  [autocollect] push FAILED (commit kept locally): "
+                      f"{r.stderr.strip()[:200]}")
+    except Exception as e:
+        print(f"  [autocollect] git step failed: {e}")
+
+
 # ─── ENTRY POINT ───────────────────────────────────────────────────────────
 def main():
     global args
@@ -1314,6 +1394,11 @@ def main():
     print(f"\nFull data: {csv_path}")
     print(f"Passports: {PASSPORT_DIR}/")
     print(f"Completed: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+    sys.stdout.flush()
+
+    # ── Auto-collect results into git ──────────────────────────────────────
+    print(f"\n{'='*60}\n[AUTO-COLLECT] gathering results into git")
+    collect_results_to_git(tier_cfg["label"], csv_path, log_path)
     sys.stdout.flush()
 
 
