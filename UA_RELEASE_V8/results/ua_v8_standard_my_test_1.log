@@ -1134,3 +1134,75 @@ UA TEST v8.0 — qwen3.5-35b-a3b
     [  650/9240] (  7.0%) 403.6min — MEDICAL_TRIAGE T=1.0
     [  660/9240] (  7.1%) 411.8min — MEDICAL_TRIAGE T=1.0
   [domain done] MEDICAL_TRIAGE — publishing results to git
+  [autocollect] copied 3 file(s) -> /Volumes/MONTEREY_OUT/Users/du/Desktop/SCIENCE_AI/UA_RELEASE_V8/results
+  [autocollect] committed: Results: UA Test v8 Standard run (qwen3.5-35b-a3b/MEDICAL_TRIAGE) — 2026-06-27 09:54
+  [autocollect] pushed to origin ✓
+
+  >> DOMAIN: CYBER_SECURITY
+    [  670/9240] (  7.3%) 414.6min — CYBER_SECURITY T=0.0
+    [  680/9240] (  7.4%) 416.9min — CYBER_SECURITY T=0.0
+    [  690/9240] (  7.5%) 422.9min — CYBER_SECURITY T=0.0
+    [  700/9240] (  7.6%) 428.9min — CYBER_SECURITY T=0.0
+    [  710/9240] (  7.7%) 436.5min — CYBER_SECURITY T=0.0
+    [  720/9240] (  7.8%) 444.0min — CYBER_SECURITY T=0.0
+    [  730/9240] (  7.9%) 446.7min — CYBER_SECURITY T=0.1
+    [  740/9240] (  8.0%) 448.8min — CYBER_SECURITY T=0.1
+    [  750/9240] (  8.1%) 454.2min — CYBER_SECURITY T=0.1
+    [  760/9240] (  8.2%) 459.4min — CYBER_SECURITY T=0.1
+    [  770/9240] (  8.3%) 468.1min — CYBER_SECURITY T=0.1
+    [  780/9240] (  8.4%) 476.8min — CYBER_SECURITY T=0.1
+    [  790/9240] (  8.5%) 479.2min — CYBER_SECURITY T=0.2
+    [  800/9240] (  8.7%) 481.3min — CYBER_SECURITY T=0.2
+    [  810/9240] (  8.8%) 486.5min — CYBER_SECURITY T=0.2
+    [  820/9240] (  8.9%) 491.6min — CYBER_SECURITY T=0.2
+    [  830/9240] (  9.0%) 500.3min — CYBER_SECURITY T=0.2
+    [  840/9240] (  9.1%) 508.8min — CYBER_SECURITY T=0.2
+    [  850/9240] (  9.2%) 511.4min — CYBER_SECURITY T=0.3
+    [  860/9240] (  9.3%) 513.6min — CYBER_SECURITY T=0.3
+    [  870/9240] (  9.4%) 519.1min — CYBER_SECURITY T=0.3
+    [  880/9240] (  9.5%) 524.7min — CYBER_SECURITY T=0.3
+    [  890/9240] (  9.6%) 533.3min — CYBER_SECURITY T=0.3
+    [  900/9240] (  9.7%) 541.5min — CYBER_SECURITY T=0.3
+    [  910/9240] (  9.8%) 543.7min — CYBER_SECURITY T=0.4
+    [  920/9240] ( 10.0%) 545.8min — CYBER_SECURITY T=0.4
+    [  930/9240] ( 10.1%) 551.9min — CYBER_SECURITY T=0.4
+    [  940/9240] ( 10.2%) 557.8min — CYBER_SECURITY T=0.4
+    [  950/9240] ( 10.3%) 565.9min — CYBER_SECURITY T=0.4
+    [  960/9240] ( 10.4%) 574.6min — CYBER_SECURITY T=0.4
+    [  970/9240] ( 10.5%) 577.1min — CYBER_SECURITY T=0.5
+    [  980/9240] ( 10.6%) 579.6min — CYBER_SECURITY T=0.5
+    [  990/9240] ( 10.7%) 585.3min — CYBER_SECURITY T=0.5
+    [ 1000/9240] ( 10.8%) 591.6min — CYBER_SECURITY T=0.5
+    [ 1010/9240] ( 10.9%) 599.8min — CYBER_SECURITY T=0.5
+    [ 1020/9240] ( 11.0%) 608.1min — CYBER_SECURITY T=0.5
+    [ 1030/9240] ( 11.1%) 610.4min — CYBER_SECURITY T=0.6
+    [ 1040/9240] ( 11.3%) 612.6min — CYBER_SECURITY T=0.6
+    [ 1050/9240] ( 11.4%) 618.8min — CYBER_SECURITY T=0.6
+    [ 1060/9240] ( 11.5%) 625.1min — CYBER_SECURITY T=0.6
+    [ 1070/9240] ( 11.6%) 633.1min — CYBER_SECURITY T=0.6
+    [ 1080/9240] ( 11.7%) 642.3min — CYBER_SECURITY T=0.6
+    [ 1090/9240] ( 11.8%) 644.5min — CYBER_SECURITY T=0.7
+    [ 1100/9240] ( 11.9%) 646.6min — CYBER_SECURITY T=0.7
+    [ 1110/9240] ( 12.0%) 653.0min — CYBER_SECURITY T=0.7
+    [ 1120/9240] ( 12.1%) 659.0min — CYBER_SECURITY T=0.7
+    [ 1130/9240] ( 12.2%) 667.5min — CYBER_SECURITY T=0.7
+    [ 1140/9240] ( 12.3%) 675.1min — CYBER_SECURITY T=0.7
+    [ 1150/9240] ( 12.4%) 677.5min — CYBER_SECURITY T=0.8
+    [ 1160/9240] ( 12.6%) 679.9min — CYBER_SECURITY T=0.8
+    [ 1170/9240] ( 12.7%) 685.7min — CYBER_SECURITY T=0.8
+    [ 1180/9240] ( 12.8%) 692.0min — CYBER_SECURITY T=0.8
+    [ 1190/9240] ( 12.9%) 700.3min — CYBER_SECURITY T=0.8
+    [ 1200/9240] ( 13.0%) 708.4min — CYBER_SECURITY T=0.8
+    [ 1210/9240] ( 13.1%) 711.0min — CYBER_SECURITY T=0.9
+    [ 1220/9240] ( 13.2%) 713.3min — CYBER_SECURITY T=0.9
+    [ 1230/9240] ( 13.3%) 720.0min — CYBER_SECURITY T=0.9
+    [ 1240/9240] ( 13.4%) 727.1min — CYBER_SECURITY T=0.9
+    [ 1250/9240] ( 13.5%) 735.4min — CYBER_SECURITY T=0.9
+    [ 1260/9240] ( 13.6%) 743.2min — CYBER_SECURITY T=0.9
+    [ 1270/9240] ( 13.7%) 745.6min — CYBER_SECURITY T=1.0
+    [ 1280/9240] ( 13.9%) 748.0min — CYBER_SECURITY T=1.0
+    [ 1290/9240] ( 14.0%) 754.5min — CYBER_SECURITY T=1.0
+    [ 1300/9240] ( 14.1%) 762.3min — CYBER_SECURITY T=1.0
+    [ 1310/9240] ( 14.2%) 770.3min — CYBER_SECURITY T=1.0
+    [ 1320/9240] ( 14.3%) 778.8min — CYBER_SECURITY T=1.0
+  [domain done] CYBER_SECURITY — publishing results to git
