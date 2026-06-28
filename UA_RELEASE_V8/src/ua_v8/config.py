@@ -28,6 +28,12 @@ MAX_TOKENS = 4096
 MODEL_WAIT_SEC = 240
 REQUEST_TIMEOUT = 900
 
+# ─── RETRY ─────────────────────────────────────────────────────────────────
+# Transient LM Studio failures (HTTP 5xx / sporadic 400) caused permanent gaps
+# in the first standard run (LEGAL_COMPLIANCE lost 17 rows). Retry with backoff.
+RETRY_MAX_ATTEMPTS = 3
+RETRY_BACKOFF_SEC = 2.0
+
 # ─── MEMORY GUARD ──────────────────────────────────────────────────────────
 # On unified-memory Macs, loading a model larger than free RAM triggers swap
 # thrash that can lock up the whole system.
@@ -54,4 +60,5 @@ AUTO_PUSH_RESULTS = True
 CSV_HEADER = [
     "model", "domain", "scenario_id", "type", "temp", "mc_run",
     "ordering", "result", "raw_label", "secondpass", "response_length",
+    "latency_s",
 ]

@@ -15,6 +15,7 @@ from ua_v8 import config
 from ua_v8.collector import collect_results_to_git
 from ua_v8.domains import DOMAIN_NAMES, DOMAINS
 from ua_v8.model_manager import get_all_models, switch_model
+from ua_v8.model_splitter import write_model_csv
 from ua_v8.passport import scan_progress
 from ua_v8.runner import run_model
 from ua_v8.tee_logger import TeeLogger
@@ -92,6 +93,10 @@ def main():
             all_passports.append(passport)
             f.flush()
             os.fsync(f.fileno())
+            # Derived per-model CSV (source of truth stays the combined file).
+            mp = write_model_csv(csv_path, model_id)
+            print(f"  [per-model] wrote {mp}")
+            sys.stdout.flush()
 
     # ── Final comparison ──────────────────────────────────────────────────
     print(f"\n{'='*70}")

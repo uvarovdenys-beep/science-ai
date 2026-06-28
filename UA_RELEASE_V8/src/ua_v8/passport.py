@@ -48,7 +48,11 @@ def scan_progress(csv_path, mc_runs):
     for (model, domain), rows in by_key.items():
         exp = (expected_rows_for_domain(domain, mc_runs)
                if domain in DOMAINS else 0)
-        if exp and len(rows) >= exp:
+        # Count only successful rows toward completeness. A domain that holds
+        # ERROR rows is NOT complete -> it gets dropped and re-run so transient
+        # failures don't leave permanent gaps.
+        ok_rows = sum(1 for r in rows if len(r) > 7 and r[7] != "ERROR")
+        if exp and ok_rows >= exp:
             complete.add((model, domain))
             kept.extend(rows)
         else:

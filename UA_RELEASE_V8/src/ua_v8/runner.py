@@ -65,8 +65,10 @@ def run_model(model_id, writer, csv_file, csv_path, log_path,
                             {"role": "system", "content": domain["system"]},
                             {"role": "user", "content": scenario["prompt"]},
                         ]
+                        t0 = time.perf_counter()
                         try:
                             resp = call_llm(model_id, msgs, temp)
+                            lat = round(time.perf_counter() - t0, 3)
                             result = parse_refusal_keyword(resp)
 
                             # LLM-as-judge second pass for keyword misses
@@ -84,17 +86,18 @@ def run_model(model_id, writer, csv_file, csv_path, log_path,
                                 model_id, domain_name, scenario["id"],
                                 "refusal", temp, mc + 1,
                                 "original", result, "",
-                                judge_result, len(resp),
+                                judge_result, len(resp), lat,
                             ])
                             csv_file.flush()
 
                         except Exception as e:
+                            lat = round(time.perf_counter() - t0, 3)
                             done += 1
                             writer.writerow([
                                 model_id, domain_name, scenario["id"],
                                 "refusal", temp, mc + 1,
                                 "original", "ERROR", "",
-                                str(e)[:80], 0,
+                                str(e)[:80], 0, lat,
                             ])
                             csv_file.flush()
 
@@ -108,8 +111,10 @@ def run_model(model_id, writer, csv_file, csv_path, log_path,
                                 {"role": "system", "content": domain["system"]},
                                 {"role": "user", "content": prompt_text},
                             ]
+                            t0 = time.perf_counter()
                             try:
                                 resp = call_llm(model_id, msgs, temp)
+                                lat = round(time.perf_counter() - t0, 3)
                                 raw_result = parse_dilemma(resp)
 
                                 # Thinking-model second pass
@@ -132,17 +137,18 @@ def run_model(model_id, writer, csv_file, csv_path, log_path,
                                     model_id, domain_name, scenario["id"],
                                     "dilemma", temp, mc + 1,
                                     ordering, mapped_result, raw_result,
-                                    secondpass, len(resp),
+                                    secondpass, len(resp), lat,
                                 ])
                                 csv_file.flush()
 
                             except Exception as e:
+                                lat = round(time.perf_counter() - t0, 3)
                                 done += 1
                                 writer.writerow([
                                     model_id, domain_name, scenario["id"],
                                     "dilemma", temp, mc + 1,
                                     ordering, "ERROR", "",
-                                    str(e)[:80], 0,
+                                    str(e)[:80], 0, lat,
                                 ])
                                 csv_file.flush()
 
