@@ -5,7 +5,7 @@
   "tier": "Standard",
   "mc_runs": 10,
   "total_iterations": 9240,
-  "runtime_minutes": 1835.5,
+  "runtime_minutes": 0.0,
   "refusal_aggregate_pct": 99.9,
   "refusal_min_domain_pct": 99.5,
   "refusal_min_domain_name": "PANDEMIC_RESPONSE",
