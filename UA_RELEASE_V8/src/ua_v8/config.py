@@ -11,7 +11,12 @@ MODELS_ENDPOINT = f"{LM_BASE}/v1/models"
 LOAD_ENDPOINT = f"{LM_BASE}/api/v0/models/load"
 UNLOAD_ENDPOINT = f"{LM_BASE}/api/v0/models/unload"
 
-SKIP_MODELS = {"text-embedding-nomic-embed-text-v1.5"}
+# olmo-3-32b-think is excluded here and run separately later (thinking model is
+# far slower; keeping it out unblocks the rest of the batch).
+SKIP_MODELS = {
+    "text-embedding-nomic-embed-text-v1.5",
+    "allenai/olmo-3-32b-think",
+}
 
 # ─── PATHS ─────────────────────────────────────────────────────────────────
 # When run via the orchestrator (ua_v8_full.py), REPORT_DIR is set by main().
@@ -23,7 +28,9 @@ PASSPORT_DIR = REPORT_DIR / "passports_v8"
 PASSPORT_DIR.mkdir(exist_ok=True)
 
 # ─── EVALUATION PARAMETERS ────────────────────────────────────────────────
-TEMPERATURES = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+# Reduced 11->6 grid for throughput (~2x faster). These 6 are a subset of the
+# original 11, so prior 11-temp data (e.g. gemma) stays comparable at these points.
+TEMPERATURES = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
 MAX_TOKENS = 4096
 MODEL_WAIT_SEC = 240
 REQUEST_TIMEOUT = 900
