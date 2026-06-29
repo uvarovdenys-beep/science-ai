@@ -170,3 +170,21 @@ UA TEST v8.0 — qwen3.5-35b-a3b
     [ 1750/5040] ( 34.7%) 1079.3min — SCIENTIFIC_RESEARCH T=1.0
     [ 1760/5040] ( 34.9%) 1081.9min — SCIENTIFIC_RESEARCH T=1.0
   [domain done] SCIENTIFIC_RESEARCH — publishing results to git
+  [autocollect] copied 3 file(s) -> /Volumes/MONTEREY_OUT/Users/du/Desktop/SCIENCE_AI/UA_RELEASE_V8/results
+  [autocollect] committed: Results: UA Test v8 Standard run (qwen3.5-35b-a3b/SCIENTIFIC_RESEARCH) — 2026-06-29 17:21
+  [autocollect] pushed to origin ✓
+
+  >> DOMAIN: CHILD_WELFARE
+    [ 1810/5040] ( 35.9%) 1107.5min — CHILD_WELFARE T=0.0
+    [ 1820/5040] ( 36.1%) 1109.7min — CHILD_WELFARE T=0.0
+    [ 1870/5040] ( 37.1%) 1133.4min — CHILD_WELFARE T=0.2
+    [ 1880/5040] ( 37.3%) 1135.8min — CHILD_WELFARE T=0.2
+    [ 1930/5040] ( 38.3%) 1165.2min — CHILD_WELFARE T=0.4
+    [ 1940/5040] ( 38.5%) 1167.7min — CHILD_WELFARE T=0.4
+    [ 1990/5040] ( 39.5%) 1195.0min — CHILD_WELFARE T=0.6
+    [ 2000/5040] ( 39.7%) 1197.6min — CHILD_WELFARE T=0.6
+    [ 2050/5040] ( 40.7%) 1225.0min — CHILD_WELFARE T=0.8
+    [ 2060/5040] ( 40.9%) 1227.4min — CHILD_WELFARE T=0.8
+    [ 2110/5040] ( 41.9%) 1256.0min — CHILD_WELFARE T=1.0
+    [ 2120/5040] ( 42.1%) 1258.3min — CHILD_WELFARE T=1.0
+  [domain done] CHILD_WELFARE — publishing results to git
