@@ -583,3 +583,45 @@ UA TEST v8.0 — qwen3.6-35b-a3b
     [ 1790/5040] ( 35.5%) 611.0min — FINANCIAL_MARKETS T=1.0
     [ 1800/5040] ( 35.7%) 613.9min — FINANCIAL_MARKETS T=1.0
   [domain done] FINANCIAL_MARKETS — publishing results to git
+  [autocollect] copied 4 file(s) -> /Volumes/MONTEREY_OUT/Users/du/Desktop/SCIENCE_AI/UA_RELEASE_V8/results
+  [autocollect] committed: Results: UA Test v8 Standard run (qwen3.6-35b-a3b/FINANCIAL_MARKETS) — 2026-06-30 21:43
+  [autocollect] pushed to origin ✓
+
+  >> DOMAIN: MILITARY_DRONE
+    [ 1810/5040] ( 35.9%) 616.1min — MILITARY_DRONE T=0.0
+    [ 1820/5040] ( 36.1%) 618.4min — MILITARY_DRONE T=0.0
+    [ 1830/5040] ( 36.3%) 622.7min — MILITARY_DRONE T=0.0
+    [ 1840/5040] ( 36.5%) 626.9min — MILITARY_DRONE T=0.0
+    [ 1850/5040] ( 36.7%) 632.3min — MILITARY_DRONE T=0.0
+    [ 1860/5040] ( 36.9%) 637.6min — MILITARY_DRONE T=0.0
+    [ 1870/5040] ( 37.1%) 639.0min — MILITARY_DRONE T=0.2
+    [ 1880/5040] ( 37.3%) 641.1min — MILITARY_DRONE T=0.2
+    [ 1890/5040] ( 37.5%) 645.5min — MILITARY_DRONE T=0.2
+    [ 1900/5040] ( 37.7%) 649.7min — MILITARY_DRONE T=0.2
+    [ 1910/5040] ( 37.9%) 655.6min — MILITARY_DRONE T=0.2
+    [ 1920/5040] ( 38.1%) 660.6min — MILITARY_DRONE T=0.2
+    [ 1930/5040] ( 38.3%) 662.0min — MILITARY_DRONE T=0.4
+    [ 1940/5040] ( 38.5%) 664.2min — MILITARY_DRONE T=0.4
+    [ 1950/5040] ( 38.7%) 668.6min — MILITARY_DRONE T=0.4
+    [ 1960/5040] ( 38.9%) 673.0min — MILITARY_DRONE T=0.4
+    [ 1970/5040] ( 39.1%) 678.6min — MILITARY_DRONE T=0.4
+    [ 1980/5040] ( 39.3%) 684.3min — MILITARY_DRONE T=0.4
+    [ 1990/5040] ( 39.5%) 685.8min — MILITARY_DRONE T=0.6
+    [ 2000/5040] ( 39.7%) 688.0min — MILITARY_DRONE T=0.6
+    [ 2010/5040] ( 39.9%) 692.0min — MILITARY_DRONE T=0.6
+    [ 2020/5040] ( 40.1%) 696.6min — MILITARY_DRONE T=0.6
+    [ 2030/5040] ( 40.3%) 702.5min — MILITARY_DRONE T=0.6
+    [ 2040/5040] ( 40.5%) 708.2min — MILITARY_DRONE T=0.6
+    [ 2050/5040] ( 40.7%) 709.7min — MILITARY_DRONE T=0.8
+    [ 2060/5040] ( 40.9%) 712.0min — MILITARY_DRONE T=0.8
+    [ 2070/5040] ( 41.1%) 716.7min — MILITARY_DRONE T=0.8
+    [ 2080/5040] ( 41.3%) 721.4min — MILITARY_DRONE T=0.8
+    [ 2090/5040] ( 41.5%) 726.4min — MILITARY_DRONE T=0.8
+    [ 2100/5040] ( 41.7%) 731.4min — MILITARY_DRONE T=0.8
+    [ 2110/5040] ( 41.9%) 732.8min — MILITARY_DRONE T=1.0
+    [ 2120/5040] ( 42.1%) 735.3min — MILITARY_DRONE T=1.0
+    [ 2130/5040] ( 42.3%) 739.7min — MILITARY_DRONE T=1.0
+    [ 2140/5040] ( 42.5%) 744.6min — MILITARY_DRONE T=1.0
+    [ 2150/5040] ( 42.7%) 750.2min — MILITARY_DRONE T=1.0
+    [ 2160/5040] ( 42.9%) 756.3min — MILITARY_DRONE T=1.0
+  [domain done] MILITARY_DRONE — publishing results to git
