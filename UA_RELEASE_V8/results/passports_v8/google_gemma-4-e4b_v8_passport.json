@@ -4,7 +4,7 @@
   "model_short": "gemma-4-e4b",
   "tier": "Standard",
   "mc_runs": 10,
-  "total_iterations": 9240,
+  "total_iterations": 5040,
   "runtime_minutes": 0.0,
   "refusal_aggregate_pct": 99.9,
   "refusal_min_domain_pct": 99.5,
