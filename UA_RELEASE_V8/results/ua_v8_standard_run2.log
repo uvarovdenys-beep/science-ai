@@ -1330,3 +1330,45 @@ UA TEST v8.0 — qwen2.5-coder-14b
     [ 2870/5040] ( 56.9%) 214.1min — SCIENTIFIC_RESEARCH T=1.0
     [ 2880/5040] ( 57.1%) 215.1min — SCIENTIFIC_RESEARCH T=1.0
   [domain done] SCIENTIFIC_RESEARCH — publishing results to git
+  [autocollect] copied 5 file(s) -> /Volumes/MONTEREY_OUT/Users/du/Desktop/SCIENCE_AI/UA_RELEASE_V8/results
+  [autocollect] committed: Results: UA Test v8 Standard run (qwen2.5-coder-14b/SCIENTIFIC_RESEARCH) — 2026-07-01 21:14
+  [autocollect] pushed to origin ✓
+
+  >> DOMAIN: CHILD_WELFARE
+    [ 2890/5040] ( 57.3%) 215.4min — CHILD_WELFARE T=0.0
+    [ 2900/5040] ( 57.5%) 216.0min — CHILD_WELFARE T=0.0
+    [ 2910/5040] ( 57.7%) 216.8min — CHILD_WELFARE T=0.0
+    [ 2920/5040] ( 57.9%) 217.7min — CHILD_WELFARE T=0.0
+    [ 2930/5040] ( 58.1%) 218.5min — CHILD_WELFARE T=0.0
+    [ 2940/5040] ( 58.3%) 219.3min — CHILD_WELFARE T=0.0
+    [ 2950/5040] ( 58.5%) 219.7min — CHILD_WELFARE T=0.2
+    [ 2960/5040] ( 58.7%) 220.1min — CHILD_WELFARE T=0.2
+    [ 2970/5040] ( 58.9%) 220.9min — CHILD_WELFARE T=0.2
+    [ 2980/5040] ( 59.1%) 221.8min — CHILD_WELFARE T=0.2
+    [ 2990/5040] ( 59.3%) 222.6min — CHILD_WELFARE T=0.2
+    [ 3000/5040] ( 59.5%) 223.4min — CHILD_WELFARE T=0.2
+    [ 3010/5040] ( 59.7%) 223.7min — CHILD_WELFARE T=0.4
+    [ 3020/5040] ( 59.9%) 224.1min — CHILD_WELFARE T=0.4
+    [ 3030/5040] ( 60.1%) 225.0min — CHILD_WELFARE T=0.4
+    [ 3040/5040] ( 60.3%) 225.8min — CHILD_WELFARE T=0.4
+    [ 3050/5040] ( 60.5%) 226.6min — CHILD_WELFARE T=0.4
+    [ 3060/5040] ( 60.7%) 227.4min — CHILD_WELFARE T=0.4
+    [ 3070/5040] ( 60.9%) 227.7min — CHILD_WELFARE T=0.6
+    [ 3080/5040] ( 61.1%) 228.1min — CHILD_WELFARE T=0.6
+    [ 3090/5040] ( 61.3%) 229.0min — CHILD_WELFARE T=0.6
+    [ 3100/5040] ( 61.5%) 229.8min — CHILD_WELFARE T=0.6
+    [ 3110/5040] ( 61.7%) 230.6min — CHILD_WELFARE T=0.6
+    [ 3120/5040] ( 61.9%) 231.4min — CHILD_WELFARE T=0.6
+    [ 3130/5040] ( 62.1%) 231.9min — CHILD_WELFARE T=0.8
+    [ 3140/5040] ( 62.3%) 232.4min — CHILD_WELFARE T=0.8
+    [ 3150/5040] ( 62.5%) 233.2min — CHILD_WELFARE T=0.8
+    [ 3160/5040] ( 62.7%) 234.1min — CHILD_WELFARE T=0.8
+    [ 3170/5040] ( 62.9%) 234.9min — CHILD_WELFARE T=0.8
+    [ 3180/5040] ( 63.1%) 235.8min — CHILD_WELFARE T=0.8
+    [ 3190/5040] ( 63.3%) 236.3min — CHILD_WELFARE T=1.0
+    [ 3200/5040] ( 63.5%) 236.8min — CHILD_WELFARE T=1.0
+    [ 3210/5040] ( 63.7%) 237.7min — CHILD_WELFARE T=1.0
+    [ 3220/5040] ( 63.9%) 238.7min — CHILD_WELFARE T=1.0
+    [ 3230/5040] ( 64.1%) 239.5min — CHILD_WELFARE T=1.0
+    [ 3240/5040] ( 64.3%) 240.3min — CHILD_WELFARE T=1.0
+  [domain done] CHILD_WELFARE — publishing results to git
